@@ -2,7 +2,7 @@ import axios from "axios";
 
 console.log(axios);
 
-const submitButton = document.getElementById("submit-input");
+const submitButton = document.getElementById("submit-button");
 
 submitButton.addEventListener("click", function() {
 const addressinput = document.getElementById("address-input");
@@ -21,7 +21,7 @@ axios(config).then(function(response) {
     console.log(response.data);
     const REPLACEWITHNAMEOFNFT = response.data.ownedNfts[NUMBEROFNFT].metadata.name;
 for(let i=0; i < response.data.ownedNfts.length;i++) {
-    const nft = response.dta.ownedNfts[i];
+    const nft = response.data.ownedNfts[i];
     // create a NEW html elemnt, insert it into the page, in the "all-nfts" div
     // const myelement = document.createElement("img")
     // img.src = nft.media.image;

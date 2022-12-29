@@ -4,7 +4,7 @@
 var _axios = _interopRequireDefault(require("axios"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 console.log(_axios.default);
-const submitButton = document.getElementById("submit-input");
+const submitButton = document.getElementById("submit-button");
 submitButton.addEventListener("click", function () {
   const addressinput = document.getElementById("address-input");
   console.log(addressinput.value);
