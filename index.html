@@ -1,13 +1,16 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="index.css">
-      </head>
-    <body>
-        <form>
-            <input type="text" name="userAddress" placeholder="Enter ETH address" required>
-            <button type="submit">Submit</button>
-          </form>
-          
-        <script src="bundle.js"></script>
-    </body>
+  <head>
+    <title>NFT Viewer</title>
+  </head>
+  <body>
+    <div id="nft-container"></div>
+    <form>
+      <label for="userAddress">Enter an Ethereum address:</label><br>
+      <input type="text" id="userAddress" name="userAddress"><br>
+      <button type="submit" id="buttonSubmit">View NFTs</button>
+    </form>
+    <script src="path/to/axios.min.js"></script>
+    <script src="path/to/nft-viewer.js"></script>
+  </body>
 </html>
