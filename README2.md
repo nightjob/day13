@@ -7,7 +7,7 @@
 
 <!-- 1. HTML input element of type text on the page -->
 
-2. HTML button element to click to fetch the ERC20s/NFTs
+<!-- 2. HTML button element to click to fetch the ERC20s/NFTs -->
 
 3. HTML div element to put the results
 
