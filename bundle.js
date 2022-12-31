@@ -12,7 +12,6 @@ const submitButton = document.getElementById("submit-button");
 // telling it to listen for a click and then do a function
 submitButton.addEventListener("click", function () {
   const myAddress = document.getElementById("user-address");
-  // log to console
   console.log(myAddress.value);
 
   // starting docs from alchemy
@@ -22,16 +21,14 @@ submitButton.addEventListener("click", function () {
   const apiKey = "eqVlGAkmbuEJsJ_9jR5c9RAsVA8yYRBy";
   const baseURL = `https://eth-mainnet.g.alchemy.com/nft/v2/${apiKey}/getNFTs/`;
   const ownerAddr = myAddress.value;
-  alert(myAddress.value);
-
-  // var config = {
-  //     method: 'get',
-  //     url: `${baseURL}?owner=${ownerAddr}`
-  // };
-
-  // axios(config).then(function(response) {
-  // console.log(response.data);
-  // })
+  console.log(myAddress.value);
+  var config = {
+    method: 'get',
+    url: `${baseURL}?owner=${ownerAddr}`
+  };
+  (0, _axios.default)(config).then(function (response) {
+    console.log(response.data);
+  });
 });
 
 },{"axios":2}],2:[function(require,module,exports){
