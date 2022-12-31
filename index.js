@@ -24,8 +24,27 @@ submitButton.addEventListener("click", function() {
         url: `${baseURL}?owner=${ownerAddr}`
     };
 
-    axios(config).then(function(response) {
-        console.log(response.data);
-    })
+    axios(config).then(function (response) {
+        var nftList = response.data.ownedNfts;
+        console.log(nftList);
+        let nftMasterList = [];
+        for (let i = 0; i < nftList.length; i++) {
+            console.log(response.data.ownedNfts[i].metadata.name);
+            console.log(response.data.ownedNfts[i].metadata.image);
+            nftMasterList[i] = response.data.ownedNfts[i].metadata.name;
+        }
 
+        console.log(nftMasterList);
+        document.getElementById("nft-list").innerHTML = nftMasterList;
+        console.log(response.data.ownedNfts[0].metadata.name);
+        document.getElementById("nft-name").innerHTML = response.data.ownedNfts[0].metadata.name;
+        console.log(response.data.ownedNfts[0].metadata.image);
+        document.getElementById("nft-image").src = response.data.ownedNfts[0].metadata.image;
+
+        // console.log(response.data.ownedNfts[1].metadata.name);
+        // document.getElementById("NFTname2").innerHTML = response.data.ownedNfts[1].metadata.name;
+        // console.log(response.data.ownedNfts[1].metadata.image);
+        // document.getElementById("NFTimage2").src = response.data.ownedNfts[1].metadata.image;
+
+    })
 })
