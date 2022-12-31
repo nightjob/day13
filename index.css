@@ -1,0 +1,9 @@
+/* Set the width and height of the img elements to 200px */
+#nft-images-container img {
+    width: 200px;
+    height: 200px;
+}
+
+body {
+    background-color: rgba(0, 0, 255, 0.5); /* Blue with 50% transparency */
+}
