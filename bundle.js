@@ -33,6 +33,13 @@ submitButton.addEventListener("click", function () {
       console.log(response.data.ownedNfts[i].metadata.name);
       console.log(response.data.ownedNfts[i].metadata.image);
       nftMasterList[i] = response.data.ownedNfts[i].metadata.name;
+
+      // Create an img element for each NFT image
+      const imgElement = document.createElement("img");
+      // Set the src attribute of the img element to the image URL
+      imgElement.src = response.data.ownedNfts[i].metadata.image;
+      // Append the img element to the container element
+      document.getElementById("nft-images-container").appendChild(imgElement);
     }
     console.log(nftMasterList);
     document.getElementById("nft-list").innerHTML = nftMasterList;
@@ -40,11 +47,6 @@ submitButton.addEventListener("click", function () {
     document.getElementById("nft-name").innerHTML = response.data.ownedNfts[0].metadata.name;
     console.log(response.data.ownedNfts[0].metadata.image);
     document.getElementById("nft-image").src = response.data.ownedNfts[0].metadata.image;
-
-    // console.log(response.data.ownedNfts[1].metadata.name);
-    // document.getElementById("NFTname2").innerHTML = response.data.ownedNfts[1].metadata.name;
-    // console.log(response.data.ownedNfts[1].metadata.image);
-    // document.getElementById("NFTimage2").src = response.data.ownedNfts[1].metadata.image;
   });
 });
 
