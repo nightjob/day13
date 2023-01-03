@@ -12,43 +12,58 @@ submitButton.addEventListener("click", function () {
   const ownerAddr = myAddress.value;
   console.log(myAddress.value);
   var config = {
-    method: 'get',
+    method: "get",
     url: `${baseURL}?owner=${ownerAddr}`
   };
   (0, _axios.default)(config).then(function (response) {
     var nftList = response.data.ownedNfts;
     console.log(nftList);
     let nftMasterList = [];
-    // Create a table element
-    const tableElement = document.createElement("table");
+    // Create a "table" element
+    const tableElement = document.createElement("div");
+    tableElement.classList.add("nft-row");
     for (let i = 0; i < nftList.length; i++) {
       console.log(response.data.ownedNfts[i].metadata.name);
       console.log(response.data.ownedNfts[i].metadata.image);
       nftMasterList[i] = response.data.ownedNfts[i].metadata.name;
 
-      // Create a row element for each NFT
-      const rowElement = document.createElement("tr");
-      // Create a cell element for the NFT name
-      const nameCellElement = document.createElement("td");
-      // Set the innerHTML of the cell element to the name of the NFT
-      nameCellElement.innerHTML = response.data.ownedNfts[i].metadata.name;
-      // Create a cell element for the NFT image
-      const imageCellElement = document.createElement("td");
-      // Create an img element for the NFT image
-      const imgElement = document.createElement("img");
-      // Set the src attribute of the img element to the image URL
-      imgElement.src = response.data.ownedNfts[i].metadata.image;
-      // Append the img element to the cell element
-      imageCellElement.appendChild(imgElement);
-      // Append the cell elements to the row element
-      rowElement.appendChild(nameCellElement);
-      rowElement.appendChild(imageCellElement);
-      // Append the row element to the table element
-      tableElement.appendChild(rowElement);
-    }
+      // Create the column cell for the NFTs
+      const columnCellElement = document.createElement("div");
+      columnCellElement.classList.add("nft-column");
 
-    // Append the table element to the nft-images-container element
-    document.getElementById("nft-images-container").appendChild(tableElement);
+      // Create the area for the name inside the cell for the NFT
+      const nameCellElement = document.createElement("h3");
+      nameCellElement.innerHTML = response.data.ownedNfts[i].metadata.name;
+
+      // Create the image cell element for the NFT
+      const imageCellElement = document.createElement("div");
+      imageCellElement.classList.add("place-holder");
+
+      // Create the actual image element for the NFT (where it will rest)
+      const imgElement = document.createElement("img");
+
+      // Define where to get the image source from
+      imgElement.src = response.data.ownedNfts[i].metadata.image;
+
+      //    ---- Append secion ----
+      //
+      // Here we point where to place things at on the page, and where to "append" them
+
+      // Linking the IMG with the Cell it should be in
+      imageCellElement.appendChild(imgElement);
+
+      // Linking the Name Cell with the Column
+      columnCellElement.appendChild(nameCellElement);
+
+      // Linking the Image Cell with the Column
+      columnCellElement.appendChild(imageCellElement);
+
+      // Linking the Column with the "Table"
+      tableElement.appendChild(columnCellElement);
+
+      // Append the table element to the nft-images-container element
+      document.getElementById("nft-images-container").appendChild(tableElement);
+    }
   });
 });
 
