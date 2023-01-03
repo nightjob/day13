@@ -5,6 +5,7 @@ var _axios = _interopRequireDefault(require("axios"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 const submitButton = document.getElementById("submit-button");
 submitButton.addEventListener("click", function () {
+  document.getElementById("nft-images-container").innerHTML = "Fetching your rugs...";
   const myAddress = document.getElementById("user-address");
   console.log(myAddress.value);
   const apiKey = "eqVlGAkmbuEJsJ_9jR5c9RAsVA8yYRBy";
@@ -44,6 +45,13 @@ submitButton.addEventListener("click", function () {
 
       // Define where to get the image source from
       imgElement.src = response.data.ownedNfts[i].metadata.image;
+
+      // Make the loading "Fetching your rugs... go away when loaded"
+      if (document.readyState === "loading") {
+        document.getElementById("nft-images-container").innerHTML = "Fetching your rugs...";
+      } else {
+        document.getElementById("nft-images-container").innerHTML = "";
+      }
 
       //    ---- Append secion ----
       //

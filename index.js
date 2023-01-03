@@ -3,6 +3,8 @@ import axios from "axios";
 const submitButton = document.getElementById("submit-button");
 
 submitButton.addEventListener("click", function () {
+  document.getElementById("nft-images-container").innerHTML =
+    "Fetching your rugs...";
   const myAddress = document.getElementById("user-address");
   console.log(myAddress.value);
 
@@ -45,6 +47,14 @@ submitButton.addEventListener("click", function () {
 
       // Define where to get the image source from
       imgElement.src = response.data.ownedNfts[i].metadata.image;
+
+      // Make the loading "Fetching your rugs..." go away when loaded
+      if (document.readyState === "loading") {
+        document.getElementById("nft-images-container").innerHTML =
+          "Fetching your rugs...";
+      } else {
+        document.getElementById("nft-images-container").innerHTML = "";
+      }
 
       //    ---- Append secion ----
       //

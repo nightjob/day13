@@ -1,0 +1,87 @@
+/* Basics of the site */
+body {
+  font-family: "Maven Pro", sans-serif;
+  background-color: rgba(61, 140, 230, 0.58);
+  color: rgba(255, 255, 255, 0.778);
+  margin: 0px;
+  padding: 0px;
+}
+
+/* Container base */
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+/* Address input field */
+.input-default {
+  padding: 10px 10px;
+  min-width: 420px;
+  border-radius: 12px;
+  border: 2px solid rgb(63, 63, 63);
+  color: rgba(0, 0, 0, 0.58);
+}
+
+/* Input changes after it is "focused"/"clicked on" */
+.input-default:focus {
+  border: 3px solid rgb(105, 125, 130);
+}
+
+/* Button Style */
+.button-default {
+  padding: 4px 20px;
+  font-weight: 600;
+  background-color: rgb(255, 255, 255);
+  margin: 0px 0px 0px 4px;
+  border-radius: 10px;
+}
+
+.max-width {
+  max-width: 1000px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* NFT Image look */
+img {
+  max-width: 100%;
+  border-radius: 4px;
+}
+
+/* Lineup of the rows */
+.nft-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Names of NFTs */
+.nft-row h3 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.nft-col {
+  width: 25%;
+  margin: 8px 8px;
+}
+
+.image-container {
+  margin: 10px 0px 0px 0px;
+}
+
+/* Mobile Sytles */
+@media screen and (max-width: 600px) {
+  .nft-row {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+  }
+
+  .nft-col {
+    width: 80%;
+  }
+  .input-default {
+    min-width: 100px;
+  }
+}
