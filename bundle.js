@@ -64,12 +64,16 @@ submitButton.addEventListener("click", function () {
       const imgElement = document.createElement("img");
       let urlImage = response.data.ownedNfts[i].metadata.image; //nft.media[0].gateway;
 
-      if (urlImage && urlImage.startsWith("ipfs://")) {
-        urlImage = "https://ipfs.io/ipfs/" + urlImage.slice(8);
+      if (urlImage && urlImage.startsWith("ipfs://ipfs")) {
+        urlImage = "https://ipfs.io/ipfs/" + urlImage.slice(11);
+      } else if (urlImage && urlImage.startsWith("ipfs://")) {
+        urlImage = "https://ipfs.io/ipfs/" + urlImage.slice(6);
+        console.log("I'm in the if statement ");
+        console.log(urlImage);
       }
 
       // Rug City
-      const rugPics = ["images/rug2.png", "images/rug3.png", "images/rug4.jpg", "images/rug5.jpg"];
+      const rugPics = ["images/rug2.png", "images/rug3.png", "images/rug4.jpg", "images/rug5.jpg", "images/rug6.jpg", "images/rug7.jpg", "images/rug8.jpg", "images/rug9.jpg", "images/rug10.jpg", "images/rug11.jpg"];
       function getRandomImage() {
         const index = Math.floor(Math.random() * rugPics.length);
         return rugPics[index];
