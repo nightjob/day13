@@ -42,11 +42,30 @@ submitButton.addEventListener("click", function () {
       const imageCellElement = document.createElement("div");
       imageCellElement.classList.add("place-holder");
 
-      // Create the actual image element for the NFT (where it will rest)
+      // ---------------------------Test Area--------------------------------------------------------------------------------------------------------------
+
       const imgElement = document.createElement("img");
 
+      let urlImage = response.data.ownedNfts[i].metadata.image; //nft.media[0].gateway;
+
+      if (urlImage.startsWith("ipfs://")) {
+        urlImage = "https://ipfs.io/ipfs/" + urlImage.slice(8);
+      }
+
+      imgElement.src = urlImage;
+      imgElement.onerror = function () {
+        // Display placeholder image
+        this.src =
+          "https://png.pngtree.com/png-vector/20190223/ourmid/pngtree-vector-picture-icon-png-image_695350.jpg";
+      };
+
+      // ---------------------------------------------------------------------------------------------------------------------------------------------------
+
+      // Create the actual image element for the NFT (where it will rest)
+      // const imgElement = document.createElement("img");
+
       // Define where to get the image source from
-      imgElement.src = response.data.ownedNfts[i].metadata.image;
+      // imgElement.src = response.data.ownedNfts[i].metadata.image;
 
       // Make the loading "Fetching your rugs..." go away when loaded
       if (document.readyState === "loading") {
