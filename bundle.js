@@ -40,27 +40,46 @@ submitButton.addEventListener("click", function () {
       const imageCellElement = document.createElement("div");
       imageCellElement.classList.add("place-holder");
 
-      // ---------------------------Test Area--------------------------------------------------------------------------------------------------------------
+      // -----------------------------------------------------------------------------------------------------------------------
+
+      // let rugName = document.querySelector(".nft-row h3").innerHTML;
+
+      // const randomRugName = [
+      //   "Hate to see it",
+      //   "This was a rug",
+      //   "Link no work",
+      // ];
+
+      // function getRandomName() {
+      //   const index = Math.floor(Math.random() * randomRugName.length);
+      //   return randomRugName[index];
+      // }
+
+      // if (rugName === "undefined") {
+      //   rugName = getRandomName();
+      // }
+
+      // -----------------------------------------------------------------------------------------------------------------------
 
       const imgElement = document.createElement("img");
       let urlImage = response.data.ownedNfts[i].metadata.image; //nft.media[0].gateway;
 
-      if (urlImage.startsWith("ipfs://")) {
+      if (urlImage && urlImage.startsWith("ipfs://")) {
         urlImage = "https://ipfs.io/ipfs/" + urlImage.slice(8);
       }
+
+      // Rug City
+      const rugPics = ["images/rug2.png", "images/rug3.png", "images/rug4.jpg", "images/rug5.jpg"];
+      function getRandomImage() {
+        const index = Math.floor(Math.random() * rugPics.length);
+        return rugPics[index];
+      }
+      const rugTime = getRandomImage();
       imgElement.src = urlImage;
       imgElement.onerror = function () {
-        // Display placeholder image
-        this.src = "https://png.pngtree.com/png-vector/20190223/ourmid/pngtree-vector-picture-icon-png-image_695350.jpg";
+        // Display a random image from the rugPics array
+        imgElement.src = rugTime;
       };
-
-      // ---------------------------------------------------------------------------------------------------------------------------------------------------
-
-      // Create the actual image element for the NFT (where it will rest)
-      // const imgElement = document.createElement("img");
-
-      // Define where to get the image source from
-      // imgElement.src = response.data.ownedNfts[i].metadata.image;
 
       // Make the loading "Fetching your rugs..." go away when loaded
       if (document.readyState === "loading") {
