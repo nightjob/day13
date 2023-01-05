@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const loadRugsText = require("./loadingrugs.js");
+
 const submitButton = document.getElementById("submit-button");
 
 submitButton.addEventListener("click", function () {
@@ -102,13 +104,14 @@ submitButton.addEventListener("click", function () {
         imgElement.src = rugTime;
       };
 
+      loadRugsText();
       // Make the loading "Fetching your rugs..." go away when loaded
-      if (document.readyState === "loading") {
-        document.getElementById("nft-images-container").innerHTML =
-          "Fetching your rugs...";
-      } else {
-        document.getElementById("nft-images-container").innerHTML = "";
-      }
+      // if (document.readyState === "loading") {
+      //   document.getElementById("nft-images-container").innerHTML =
+      //     "Fetching your rugs...";
+      // } else {
+      //   document.getElementById("nft-images-container").innerHTML = "";
+      // }
 
       //    ---- Append secion ----
       //

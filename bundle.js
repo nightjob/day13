@@ -3,6 +3,7 @@
 
 var _axios = _interopRequireDefault(require("axios"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+const loadRugsText = require("./loadingrugs.js");
 const submitButton = document.getElementById("submit-button");
 submitButton.addEventListener("click", function () {
   document.getElementById("nft-images-container").innerHTML = "Fetching your rugs...";
@@ -84,13 +85,14 @@ submitButton.addEventListener("click", function () {
         // Display a random image from the rugPics array
         imgElement.src = rugTime;
       };
-
+      loadRugsText();
       // Make the loading "Fetching your rugs..." go away when loaded
-      if (document.readyState === "loading") {
-        document.getElementById("nft-images-container").innerHTML = "Fetching your rugs...";
-      } else {
-        document.getElementById("nft-images-container").innerHTML = "";
-      }
+      // if (document.readyState === "loading") {
+      //   document.getElementById("nft-images-container").innerHTML =
+      //     "Fetching your rugs...";
+      // } else {
+      //   document.getElementById("nft-images-container").innerHTML = "";
+      // }
 
       //    ---- Append secion ----
       //
@@ -114,7 +116,18 @@ submitButton.addEventListener("click", function () {
   });
 });
 
-},{"axios":2}],2:[function(require,module,exports){
+},{"./loadingrugs.js":2,"axios":3}],2:[function(require,module,exports){
+function loadRugsText() {
+  if (document.readyState === "loading") {
+    document.getElementById("nft-images-container").innerHTML =
+      "Fetching your rugs...";
+  } else {
+    document.getElementById("nft-images-container").innerHTML = "";
+  }
+}
+module.exports = loadRugsText;
+
+},{}],3:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -166,7 +179,7 @@ exports.CanceledError = CanceledError;
 exports.AxiosError = AxiosError;
 exports.Axios = Axios;
 
-},{"./lib/axios.js":5}],3:[function(require,module,exports){
+},{"./lib/axios.js":6}],4:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -225,7 +238,7 @@ var _default = {
 };
 exports.default = _default;
 
-},{"../core/AxiosError.js":10,"../utils.js":44,"./http.js":32,"./xhr.js":4}],4:[function(require,module,exports){
+},{"../core/AxiosError.js":11,"../utils.js":45,"./http.js":33,"./xhr.js":5}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -452,7 +465,7 @@ var _default = isXHRAdapterSupported && function (config) {
 };
 exports.default = _default;
 
-},{"../cancel/CanceledError.js":7,"../core/AxiosError.js":10,"../core/AxiosHeaders.js":11,"../core/buildFullPath.js":13,"../defaults/transitional.js":19,"../helpers/parseProtocol.js":34,"../helpers/speedometer.js":35,"../platform/index.js":43,"./../core/settle.js":16,"./../helpers/buildURL.js":25,"./../helpers/cookies.js":27,"./../helpers/isURLSameOrigin.js":31,"./../utils.js":44}],5:[function(require,module,exports){
+},{"../cancel/CanceledError.js":8,"../core/AxiosError.js":11,"../core/AxiosHeaders.js":12,"../core/buildFullPath.js":14,"../defaults/transitional.js":20,"../helpers/parseProtocol.js":35,"../helpers/speedometer.js":36,"../platform/index.js":44,"./../core/settle.js":17,"./../helpers/buildURL.js":26,"./../helpers/cookies.js":28,"./../helpers/isURLSameOrigin.js":32,"./../utils.js":45}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -543,7 +556,7 @@ axios.default = axios;
 var _default = axios;
 exports.default = _default;
 
-},{"./cancel/CancelToken.js":6,"./cancel/CanceledError.js":7,"./cancel/isCancel.js":8,"./core/Axios.js":9,"./core/AxiosError.js":10,"./core/AxiosHeaders.js":11,"./core/mergeConfig.js":15,"./defaults/index.js":18,"./env/data.js":21,"./helpers/HttpStatusCode.js":23,"./helpers/bind.js":24,"./helpers/formDataToJSON.js":28,"./helpers/isAxiosError.js":30,"./helpers/spread.js":36,"./helpers/toFormData.js":37,"./utils.js":44}],6:[function(require,module,exports){
+},{"./cancel/CancelToken.js":7,"./cancel/CanceledError.js":8,"./cancel/isCancel.js":9,"./core/Axios.js":10,"./core/AxiosError.js":11,"./core/AxiosHeaders.js":12,"./core/mergeConfig.js":16,"./defaults/index.js":19,"./env/data.js":22,"./helpers/HttpStatusCode.js":24,"./helpers/bind.js":25,"./helpers/formDataToJSON.js":29,"./helpers/isAxiosError.js":31,"./helpers/spread.js":37,"./helpers/toFormData.js":38,"./utils.js":45}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -660,7 +673,7 @@ class CancelToken {
 var _default = CancelToken;
 exports.default = _default;
 
-},{"./CanceledError.js":7}],7:[function(require,module,exports){
+},{"./CanceledError.js":8}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -690,7 +703,7 @@ _utils.default.inherits(CanceledError, _AxiosError.default, {
 var _default = CanceledError;
 exports.default = _default;
 
-},{"../core/AxiosError.js":10,"../utils.js":44}],8:[function(require,module,exports){
+},{"../core/AxiosError.js":11,"../utils.js":45}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -701,7 +714,7 @@ function isCancel(value) {
   return !!(value && value.__CANCEL__);
 }
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -875,7 +888,7 @@ _utils.default.forEach(['post', 'put', 'patch'], function forEachMethodWithData(
 var _default = Axios;
 exports.default = _default;
 
-},{"../helpers/buildURL.js":25,"../helpers/validator.js":39,"./../utils.js":44,"./AxiosHeaders.js":11,"./InterceptorManager.js":12,"./buildFullPath.js":13,"./dispatchRequest.js":14,"./mergeConfig.js":15}],10:[function(require,module,exports){
+},{"../helpers/buildURL.js":26,"../helpers/validator.js":40,"./../utils.js":45,"./AxiosHeaders.js":12,"./InterceptorManager.js":13,"./buildFullPath.js":14,"./dispatchRequest.js":15,"./mergeConfig.js":16}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -961,7 +974,7 @@ AxiosError.from = (error, code, config, request, response, customProps) => {
 var _default = AxiosError;
 exports.default = _default;
 
-},{"../utils.js":44}],11:[function(require,module,exports){
+},{"../utils.js":45}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1169,7 +1182,7 @@ _utils.default.freezeMethods(AxiosHeaders);
 var _default = AxiosHeaders;
 exports.default = _default;
 
-},{"../helpers/parseHeaders.js":33,"../utils.js":44}],12:[function(require,module,exports){
+},{"../helpers/parseHeaders.js":34,"../utils.js":45}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1246,7 +1259,7 @@ class InterceptorManager {
 var _default = InterceptorManager;
 exports.default = _default;
 
-},{"./../utils.js":44}],13:[function(require,module,exports){
+},{"./../utils.js":45}],14:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1273,7 +1286,7 @@ function buildFullPath(baseURL, requestedURL) {
   return requestedURL;
 }
 
-},{"../helpers/combineURLs.js":26,"../helpers/isAbsoluteURL.js":29}],14:[function(require,module,exports){
+},{"../helpers/combineURLs.js":27,"../helpers/isAbsoluteURL.js":30}],15:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1341,7 +1354,7 @@ function dispatchRequest(config) {
   });
 }
 
-},{"../adapters/adapters.js":3,"../cancel/CanceledError.js":7,"../cancel/isCancel.js":8,"../core/AxiosHeaders.js":11,"../defaults/index.js":18,"./transformData.js":17}],15:[function(require,module,exports){
+},{"../adapters/adapters.js":4,"../cancel/CanceledError.js":8,"../cancel/isCancel.js":9,"../core/AxiosHeaders.js":12,"../defaults/index.js":19,"./transformData.js":18}],16:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1450,7 +1463,7 @@ function mergeConfig(config1, config2) {
   return config;
 }
 
-},{"../utils.js":44,"./AxiosHeaders.js":11}],16:[function(require,module,exports){
+},{"../utils.js":45,"./AxiosHeaders.js":12}],17:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1477,7 +1490,7 @@ function settle(resolve, reject, response) {
   }
 }
 
-},{"./AxiosError.js":10}],17:[function(require,module,exports){
+},{"./AxiosError.js":11}],18:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1508,7 +1521,7 @@ function transformData(fns, response) {
   return data;
 }
 
-},{"../core/AxiosHeaders.js":11,"../defaults/index.js":18,"./../utils.js":44}],18:[function(require,module,exports){
+},{"../core/AxiosHeaders.js":12,"../defaults/index.js":19,"./../utils.js":45}],19:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1646,7 +1659,7 @@ _utils.default.forEach(['post', 'put', 'patch'], function forEachMethodWithData(
 var _default = defaults;
 exports.default = _default;
 
-},{"../core/AxiosError.js":10,"../helpers/formDataToJSON.js":28,"../helpers/toFormData.js":37,"../helpers/toURLEncodedForm.js":38,"../platform/index.js":43,"../utils.js":44,"./transitional.js":19}],19:[function(require,module,exports){
+},{"../core/AxiosError.js":11,"../helpers/formDataToJSON.js":29,"../helpers/toFormData.js":38,"../helpers/toURLEncodedForm.js":39,"../platform/index.js":44,"../utils.js":45,"./transitional.js":20}],20:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1660,7 +1673,7 @@ var _default = {
 };
 exports.default = _default;
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1672,7 +1685,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var _default = _formData.default;
 exports.default = _default;
 
-},{"form-data":47}],21:[function(require,module,exports){
+},{"form-data":48}],22:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1682,7 +1695,7 @@ exports.VERSION = void 0;
 const VERSION = "1.2.2";
 exports.VERSION = VERSION;
 
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1741,7 +1754,7 @@ prototype.toString = function toString(encoder) {
 var _default = AxiosURLSearchParams;
 exports.default = _default;
 
-},{"./toFormData.js":37}],23:[function(require,module,exports){
+},{"./toFormData.js":38}],24:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1819,7 +1832,7 @@ Object.entries(HttpStatusCode).forEach(([key, value]) => {
 var _default = HttpStatusCode;
 exports.default = _default;
 
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1832,7 +1845,7 @@ function bind(fn, thisArg) {
   };
 }
 
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1886,7 +1899,7 @@ function buildURL(url, params, options) {
   return url;
 }
 
-},{"../helpers/AxiosURLSearchParams.js":22,"../utils.js":44}],26:[function(require,module,exports){
+},{"../helpers/AxiosURLSearchParams.js":23,"../utils.js":45}],27:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1905,7 +1918,7 @@ function combineURLs(baseURL, relativeURL) {
   return relativeURL ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '') : baseURL;
 }
 
-},{}],27:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1957,7 +1970,7 @@ function nonStandardBrowserEnv() {
 }();
 exports.default = _default;
 
-},{"../platform/index.js":43,"./../utils.js":44}],28:[function(require,module,exports){
+},{"../platform/index.js":44,"./../utils.js":45}],29:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2045,7 +2058,7 @@ function formDataToJSON(formData) {
 var _default = formDataToJSON;
 exports.default = _default;
 
-},{"../utils.js":44}],29:[function(require,module,exports){
+},{"../utils.js":45}],30:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2066,7 +2079,7 @@ function isAbsoluteURL(url) {
   return /^([a-z][a-z\d+\-.]*:)?\/\//i.test(url);
 }
 
-},{}],30:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2086,7 +2099,7 @@ function isAxiosError(payload) {
   return _utils.default.isObject(payload) && payload.isAxiosError === true;
 }
 
-},{"./../utils.js":44}],31:[function(require,module,exports){
+},{"./../utils.js":45}],32:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2152,7 +2165,7 @@ function nonStandardBrowserEnv() {
 }();
 exports.default = _default;
 
-},{"../platform/index.js":43,"./../utils.js":44}],32:[function(require,module,exports){
+},{"../platform/index.js":44,"./../utils.js":45}],33:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2163,7 +2176,7 @@ exports.default = void 0;
 var _default = null;
 exports.default = _default;
 
-},{}],33:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2216,7 +2229,7 @@ var _default = rawHeaders => {
 };
 exports.default = _default;
 
-},{"./../utils.js":44}],34:[function(require,module,exports){
+},{"./../utils.js":45}],35:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2228,7 +2241,7 @@ function parseProtocol(url) {
   return match && match[1] || '';
 }
 
-},{}],35:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2277,7 +2290,7 @@ function speedometer(samplesCount, min) {
 var _default = speedometer;
 exports.default = _default;
 
-},{}],36:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2311,7 +2324,7 @@ function spread(callback) {
   };
 }
 
-},{}],37:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -2517,7 +2530,7 @@ var _default = toFormData;
 exports.default = _default;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"../core/AxiosError.js":10,"../env/classes/FormData.js":20,"../utils.js":44,"buffer":46}],38:[function(require,module,exports){
+},{"../core/AxiosError.js":11,"../env/classes/FormData.js":21,"../utils.js":45,"buffer":47}],39:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2540,7 +2553,7 @@ function toURLEncodedForm(data, options) {
   }, options));
 }
 
-},{"../platform/index.js":43,"../utils.js":44,"./toFormData.js":37}],39:[function(require,module,exports){
+},{"../platform/index.js":44,"../utils.js":45,"./toFormData.js":38}],40:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2626,7 +2639,7 @@ var _default = {
 };
 exports.default = _default;
 
-},{"../core/AxiosError.js":10,"../env/data.js":21}],40:[function(require,module,exports){
+},{"../core/AxiosError.js":11,"../env/data.js":22}],41:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2636,7 +2649,7 @@ exports.default = void 0;
 var _default = FormData;
 exports.default = _default;
 
-},{}],41:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2648,7 +2661,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var _default = typeof URLSearchParams !== 'undefined' ? URLSearchParams : _AxiosURLSearchParams.default;
 exports.default = _default;
 
-},{"../../../helpers/AxiosURLSearchParams.js":22}],42:[function(require,module,exports){
+},{"../../../helpers/AxiosURLSearchParams.js":23}],43:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2710,7 +2723,7 @@ var _default = {
 };
 exports.default = _default;
 
-},{"./classes/FormData.js":40,"./classes/URLSearchParams.js":41}],43:[function(require,module,exports){
+},{"./classes/FormData.js":41,"./classes/URLSearchParams.js":42}],44:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2725,7 +2738,7 @@ Object.defineProperty(exports, "default", {
 var _index = _interopRequireDefault(require("./node/index.js"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-},{"./node/index.js":42}],44:[function(require,module,exports){
+},{"./node/index.js":43}],45:[function(require,module,exports){
 (function (global){(function (){
 'use strict';
 
@@ -3375,7 +3388,7 @@ var _default = {
 exports.default = _default;
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./helpers/bind.js":24}],45:[function(require,module,exports){
+},{"./helpers/bind.js":25}],46:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -3527,7 +3540,7 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],46:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -5308,11 +5321,11 @@ function numberIsNaN (obj) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"base64-js":45,"buffer":46,"ieee754":48}],47:[function(require,module,exports){
+},{"base64-js":46,"buffer":47,"ieee754":49}],48:[function(require,module,exports){
 /* eslint-env browser */
 module.exports = typeof self == 'object' ? self.FormData : window.FormData;
 
-},{}],48:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
