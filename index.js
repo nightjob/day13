@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const loadRugsText = require("./loadingrugs.js");
+const loadRugsText = require("./functions/loadingrugs.js");
+
+const parseUrlImage = require("./functions/images.js");
 
 const submitButton = document.getElementById("submit-button");
 
@@ -45,16 +47,8 @@ submitButton.addEventListener("click", function () {
       imageCellElement.classList.add("place-holder");
 
       const imgElement = document.createElement("img");
-
-      let urlImage = response.data.ownedNfts[i].metadata.image; //nft.media[0].gateway;
-
-      if (urlImage && urlImage.startsWith("ipfs://ipfs")) {
-        urlImage = "https://ipfs.io/ipfs/" + urlImage.slice(11);
-      } else if (urlImage && urlImage.startsWith("ipfs://")) {
-        urlImage = "https://ipfs.io/ipfs/" + urlImage.slice(6);
-        console.log("I'm in the if statement ");
-        console.log(urlImage);
-      }
+      // --------------------------------------------------------------------------------
+      const urlImage = parseUrlImage(response.data.ownedNfts[i].metadata.image);
 
       // Rug City
       const rugPics = [
@@ -79,25 +73,19 @@ submitButton.addEventListener("click", function () {
 
       imgElement.src = urlImage;
       imgElement.onerror = function () {
-        // Display a random image from the rugPics array
         imgElement.src = rugTime;
       };
 
       loadRugsText();
 
-      // Linking the IMG with the Cell it should be in
       imageCellElement.appendChild(imgElement);
 
-      // Linking the Name Cell with the Column
       columnCellElement.appendChild(nameCellElement);
 
-      // Linking the Image Cell with the Column
       columnCellElement.appendChild(imageCellElement);
 
-      // Linking the Column with the "Table"
       tableElement.appendChild(columnCellElement);
 
-      // Append the table element to the nft-images-container element
       document.getElementById("nft-images-container").appendChild(tableElement);
     }
   });
