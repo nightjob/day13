@@ -34,23 +34,33 @@ submitButton.addEventListener("click", function () {
       console.log(response.data.ownedNfts[i].metadata.image);
       nftMasterList[i] = response.data.ownedNfts[i].metadata.name;
 
-      // Create the column cell for the NFTs
       const columnCellElement = document.createElement("div");
       columnCellElement.classList.add("nft-column");
 
-      // Create the area for the name inside the cell for the NFT
       const nameCellElement = document.createElement("h3");
       nameCellElement.innerHTML = response.data.ownedNfts[i].metadata.name;
 
-      // Create the image cell element for the NFT
       const imageCellElement = document.createElement("div");
       imageCellElement.classList.add("place-holder");
 
+      // modal stuff
+      imageCellElement.addEventListener("click", function () {
+        const modal = document.getElementById("modal");
+        modal.classList.add("open");
+      });
+
+      const closeButton = document.querySelector(".close-button");
+
+      closeButton.addEventListener("click", function () {
+        const modal = document.getElementById("modal");
+        modal.classList.remove("open");
+      });
+      //
+
       const imgElement = document.createElement("img");
-      // --------------------------------------------------------------------------------
+
       const urlImage = parseUrlImage(response.data.ownedNfts[i].metadata.image);
 
-      // Rug City
       const rugPics = [
         "images/rug2.png",
         "images/rug3.png",
@@ -72,6 +82,7 @@ submitButton.addEventListener("click", function () {
       const rugTime = getRandomImage();
 
       imgElement.src = urlImage;
+
       imgElement.onerror = function () {
         imgElement.src = rugTime;
       };

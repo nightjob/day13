@@ -52,23 +52,27 @@ submitButton.addEventListener("click", function () {
       console.log(response.data.ownedNfts[i].metadata.name);
       console.log(response.data.ownedNfts[i].metadata.image);
       nftMasterList[i] = response.data.ownedNfts[i].metadata.name;
-
-      // Create the column cell for the NFTs
       const columnCellElement = document.createElement("div");
       columnCellElement.classList.add("nft-column");
-
-      // Create the area for the name inside the cell for the NFT
       const nameCellElement = document.createElement("h3");
       nameCellElement.innerHTML = response.data.ownedNfts[i].metadata.name;
-
-      // Create the image cell element for the NFT
       const imageCellElement = document.createElement("div");
       imageCellElement.classList.add("place-holder");
-      const imgElement = document.createElement("img");
-      // --------------------------------------------------------------------------------
-      const urlImage = parseUrlImage(response.data.ownedNfts[i].metadata.image);
 
-      // Rug City
+      // modal stuff
+      imageCellElement.addEventListener("click", function () {
+        const modal = document.getElementById("modal");
+        modal.classList.add("open");
+      });
+      const closeButton = document.querySelector(".close-button");
+      closeButton.addEventListener("click", function () {
+        const modal = document.getElementById("modal");
+        modal.classList.remove("open");
+      });
+      //
+
+      const imgElement = document.createElement("img");
+      const urlImage = parseUrlImage(response.data.ownedNfts[i].metadata.image);
       const rugPics = ["images/rug2.png", "images/rug3.png", "images/rug4.jpg", "images/rug5.jpg", "images/rug6.jpg", "images/rug7.jpg", "images/rug8.jpg", "images/rug9.jpg", "images/rug10.jpg", "images/rug11.jpg"];
       function getRandomImage() {
         const index = Math.floor(Math.random() * rugPics.length);
@@ -77,24 +81,13 @@ submitButton.addEventListener("click", function () {
       const rugTime = getRandomImage();
       imgElement.src = urlImage;
       imgElement.onerror = function () {
-        // Display a random image from the rugPics array
         imgElement.src = rugTime;
       };
       loadRugsText();
-
-      // Linking the IMG with the Cell it should be in
       imageCellElement.appendChild(imgElement);
-
-      // Linking the Name Cell with the Column
       columnCellElement.appendChild(nameCellElement);
-
-      // Linking the Image Cell with the Column
       columnCellElement.appendChild(imageCellElement);
-
-      // Linking the Column with the "Table"
       tableElement.appendChild(columnCellElement);
-
-      // Append the table element to the nft-images-container element
       document.getElementById("nft-images-container").appendChild(tableElement);
     }
   });
